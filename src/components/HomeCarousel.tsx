@@ -15,6 +15,9 @@ const slides = [
     buttonText: "Sign Up As A Client",
     buttonLink: "/client/signup",
     backgroundColor: "bg-spaane-green",
+    // Add empty strings for the optional properties to avoid TypeScript errors
+    subtitle: "",
+    image: "",
     children: (
       <div className="text-center">
         <Logo />
@@ -36,6 +39,9 @@ const slides = [
     buttonLink: "/browse",
     buttonIcon: <ArrowRight className="ml-2" />,
     backgroundColor: "bg-spaane-dark",
+    // Add empty strings for the optional properties to avoid TypeScript errors
+    subtitle: "",
+    image: "",
     children: (
       <div className="mt-4 text-white">
         <div className="flex items-center mb-2">

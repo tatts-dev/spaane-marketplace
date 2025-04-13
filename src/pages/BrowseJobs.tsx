@@ -3,7 +3,18 @@ import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import CategoryCard from '@/components/CategoryCard';
-import { Zap, Wrench, Hammer, Flame, Scissors, Paintbrush, Droplets, Fan } from 'lucide-react';
+import { 
+  Zap, 
+  Wrench, 
+  Hammer, 
+  Flame, 
+  Scissors, 
+  Paintbrush, 
+  Droplets, 
+  Fan 
+} from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 
 const categories = [
   { 
@@ -85,32 +96,34 @@ const BrowseJobs: React.FC = () => {
           
           <div className="mt-16">
             <h2 className="text-2xl font-bold mb-6">Popular Jobs in Pretoria</h2>
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <div className="space-y-4">
-                {[1, 2, 3].map((_, index) => (
-                  <div key={index} className="border-b pb-4 last:border-b-0 last:pb-0">
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <h3 className="font-semibold text-lg">Electrical Wiring Repair</h3>
-                        <p className="text-gray-600 text-sm mt-1">Posted 3 days ago • Pretoria East</p>
-                        <div className="flex mt-2">
-                          <span className="bg-spaane-light text-spaane-green text-xs px-2 py-1 rounded-full mr-2">
-                            Electrician
-                          </span>
-                          <span className="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded-full">
-                            Urgent
-                          </span>
+            <Card>
+              <CardContent className="p-0">
+                <div className="divide-y">
+                  {[1, 2, 3].map((_, index) => (
+                    <div key={index} className="p-6">
+                      <div className="flex justify-between items-start">
+                        <div>
+                          <h3 className="font-semibold text-lg">Electrical Wiring Repair</h3>
+                          <p className="text-gray-600 text-sm mt-1">Posted 3 days ago • Pretoria East</p>
+                          <div className="flex mt-2">
+                            <Badge variant="secondary" className="bg-spaane-light text-spaane-green mr-2">
+                              Electrician
+                            </Badge>
+                            <Badge variant="outline">
+                              Urgent
+                            </Badge>
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <span className="font-bold text-lg">R350-R500</span>
+                          <p className="text-xs text-gray-500">Hourly Rate</p>
                         </div>
                       </div>
-                      <div className="text-right">
-                        <span className="font-bold text-lg">R350-R500</span>
-                        <p className="text-xs text-gray-500">Hourly Rate</p>
-                      </div>
                     </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </main>

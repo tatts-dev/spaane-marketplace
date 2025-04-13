@@ -2,7 +2,19 @@
 import React, { useState, useEffect } from 'react';
 import CarouselSlide from './CarouselSlide';
 import { Button } from '@/components/ui/button';
-import { ArrowRight } from 'lucide-react';
+import { 
+  ArrowRight, 
+  Zap, 
+  Wrench, 
+  Hammer, 
+  Flame, 
+  CheckCircle, 
+  Upload, 
+  User,
+  FileText,
+  Shield
+} from 'lucide-react';
+import Logo from './Logo';
 
 const slides = [
   {
@@ -13,7 +25,7 @@ const slides = [
     backgroundColor: "bg-spaane-green",
     children: (
       <div className="text-center">
-        <img src="/lovable-uploads/0f14c04c-6df4-4821-bf07-3a30d01de6f1.png" alt="Logo" className="w-48 h-48 mx-auto" />
+        <Logo />
         <div className="mt-8 flex justify-center space-x-4">
           <Button variant="outline" className="bg-white hover:bg-gray-100 text-spaane-black border-2 border-spaane-black px-8 py-6 text-lg rounded-full">
             CLIENT
@@ -33,25 +45,25 @@ const slides = [
     children: (
       <div className="grid grid-cols-2 gap-4 w-full max-w-3xl">
         <div className="bg-white rounded-lg p-6 flex flex-col items-center justify-center shadow-md transition-all hover:shadow-xl">
-          <div className="text-4xl mb-2">👨‍🔧</div>
+          <Zap size={36} className="mb-2 text-spaane-black" />
           <h3 className="text-xl font-semibold mb-1">Electrician</h3>
           <p className="text-gray-500 text-sm">68 Jobs Available</p>
           <div className="mt-2 text-spaane-green">&gt;&gt;</div>
         </div>
         <div className="bg-white rounded-lg p-6 flex flex-col items-center justify-center shadow-md transition-all hover:shadow-xl">
-          <div className="text-4xl mb-2">🔧</div>
+          <Wrench size={36} className="mb-2 text-spaane-black" />
           <h3 className="text-xl font-semibold mb-1">Plumber</h3>
           <p className="text-gray-500 text-sm">120 Jobs Available</p>
           <div className="mt-2 text-spaane-green">&gt;&gt;</div>
         </div>
         <div className="bg-white rounded-lg p-6 flex flex-col items-center justify-center shadow-md transition-all hover:shadow-xl">
-          <div className="text-4xl mb-2">🛠️</div>
+          <Hammer size={36} className="mb-2 text-spaane-black" />
           <h3 className="text-xl font-semibold mb-1">Carpenter</h3>
           <p className="text-gray-500 text-sm">120 Jobs Available</p>
           <div className="mt-2 text-spaane-green">&gt;&gt;</div>
         </div>
         <div className="bg-black text-white rounded-lg p-6 flex flex-col items-center justify-center shadow-md transition-all hover:shadow-xl">
-          <div className="text-4xl mb-2">🔥</div>
+          <Flame size={36} className="mb-2 text-white" />
           <h3 className="text-xl font-semibold mb-1">Welding</h3>
           <p className="text-gray-300 text-sm">120 Jobs Available</p>
           <div className="mt-2 text-spaane-green">&gt;&gt;</div>
@@ -78,11 +90,11 @@ const slides = [
     children: (
       <div className="mt-4 text-white">
         <div className="flex items-center mb-2">
-          <div className="w-2 h-2 rounded-full bg-blue-500 mr-2"></div>
+          <CheckCircle size={16} className="text-blue-500 mr-2" />
           <p>Seamless Searching</p>
         </div>
         <div className="flex items-center">
-          <div className="w-2 h-2 rounded-full bg-blue-500 mr-2"></div>
+          <CheckCircle size={16} className="text-blue-500 mr-2" />
           <p>Protected Payments System</p>
         </div>
       </div>
@@ -95,21 +107,21 @@ const slides = [
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
         <div className="flex flex-col items-center text-center text-white">
           <div className="bg-black rounded-full p-4 mb-4">
-            <span className="text-2xl">👤</span>
+            <User size={32} className="text-white" />
           </div>
           <h3 className="text-xl font-semibold mb-2">Create Account</h3>
           <p>It's very easy to open an account</p>
         </div>
         <div className="flex flex-col items-center text-center text-white">
           <div className="bg-black rounded-full p-4 mb-4">
-            <span className="text-2xl">📋</span>
+            <FileText size={32} className="text-white" />
           </div>
           <h3 className="text-xl font-semibold mb-2">Complete Your Profile</h3>
           <p>Complete your profile with all required documention</p>
         </div>
         <div className="flex flex-col items-center text-center text-white">
           <div className="bg-black rounded-full p-4 mb-4">
-            <span className="text-2xl">✍️</span>
+            <Shield size={32} className="text-white" />
           </div>
           <h3 className="text-xl font-semibold mb-2">Apply Job Or Hire</h3>
           <p>Apply & get your preferable jobs with all the requirements and get it.</p>

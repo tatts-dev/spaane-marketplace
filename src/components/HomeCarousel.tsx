@@ -4,15 +4,7 @@ import CarouselSlide from './CarouselSlide';
 import { Button } from '@/components/ui/button';
 import { 
   ArrowRight, 
-  Zap, 
-  Wrench, 
-  Hammer, 
-  Flame, 
-  CheckCircle, 
-  Upload, 
-  User,
-  FileText,
-  Shield
+  CheckCircle
 } from 'lucide-react';
 import Logo from './Logo';
 
@@ -38,55 +30,12 @@ const slides = [
     )
   },
   {
-    title: "Browse the Job by Category",
-    subtitle: "outsourcing critical skills, by professionals",
-    description: "professionals to aid your everyday problems",
-    backgroundColor: "bg-spaane-green",
-    children: (
-      <div className="grid grid-cols-2 gap-4 w-full max-w-3xl">
-        <div className="bg-white rounded-lg p-6 flex flex-col items-center justify-center shadow-md transition-all hover:shadow-xl">
-          <Zap size={36} className="mb-2 text-spaane-black" />
-          <h3 className="text-xl font-semibold mb-1">Electrician</h3>
-          <p className="text-gray-500 text-sm">68 Jobs Available</p>
-          <div className="mt-2 text-spaane-green">&gt;&gt;</div>
-        </div>
-        <div className="bg-white rounded-lg p-6 flex flex-col items-center justify-center shadow-md transition-all hover:shadow-xl">
-          <Wrench size={36} className="mb-2 text-spaane-black" />
-          <h3 className="text-xl font-semibold mb-1">Plumber</h3>
-          <p className="text-gray-500 text-sm">120 Jobs Available</p>
-          <div className="mt-2 text-spaane-green">&gt;&gt;</div>
-        </div>
-        <div className="bg-white rounded-lg p-6 flex flex-col items-center justify-center shadow-md transition-all hover:shadow-xl">
-          <Hammer size={36} className="mb-2 text-spaane-black" />
-          <h3 className="text-xl font-semibold mb-1">Carpenter</h3>
-          <p className="text-gray-500 text-sm">120 Jobs Available</p>
-          <div className="mt-2 text-spaane-green">&gt;&gt;</div>
-        </div>
-        <div className="bg-black text-white rounded-lg p-6 flex flex-col items-center justify-center shadow-md transition-all hover:shadow-xl">
-          <Flame size={36} className="mb-2 text-white" />
-          <h3 className="text-xl font-semibold mb-1">Welding</h3>
-          <p className="text-gray-300 text-sm">120 Jobs Available</p>
-          <div className="mt-2 text-spaane-green">&gt;&gt;</div>
-        </div>
-      </div>
-    )
-  },
-  {
-    title: "Qualified Freelancer looking for work? Get Your Matched Jobs In a Few Minutes",
-    description: "Sign-up & help within your community",
-    buttonText: "Upload CV",
-    buttonLink: "/freelancer/signup",
-    backgroundColor: "bg-spaane-dark",
-    image: "/lovable-uploads/977c54db-15a2-4f0f-84d7-0a87561f5bea.png"
-  },
-  {
-    title: "Have an issue at home or in your area that needs repair? Connect with a qualified professional in house to handle it!",
-    description: "",
-    buttonText: "Post Job",
-    buttonLink: "/post-job",
+    title: "Connect with qualified professionals to handle your repairs and maintenance",
+    description: "Find skilled workers in your area quickly and easily",
+    buttonText: "Browse Jobs",
+    buttonLink: "/browse",
     buttonIcon: <ArrowRight className="ml-2" />,
-    backgroundColor: "bg-spaane-black",
-    image: "/lovable-uploads/5e850723-4099-403e-a8d1-4fa0e4b1e4bd.png",
+    backgroundColor: "bg-spaane-dark",
     children: (
       <div className="mt-4 text-white">
         <div className="flex items-center mb-2">
@@ -96,35 +45,6 @@ const slides = [
         <div className="flex items-center">
           <CheckCircle size={16} className="text-blue-500 mr-2" />
           <p>Protected Payments System</p>
-        </div>
-      </div>
-    )
-  },
-  {
-    title: "How It Works?",
-    backgroundColor: "bg-spaane-green",
-    children: (
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
-        <div className="flex flex-col items-center text-center text-white">
-          <div className="bg-black rounded-full p-4 mb-4">
-            <User size={32} className="text-white" />
-          </div>
-          <h3 className="text-xl font-semibold mb-2">Create Account</h3>
-          <p>It's very easy to open an account</p>
-        </div>
-        <div className="flex flex-col items-center text-center text-white">
-          <div className="bg-black rounded-full p-4 mb-4">
-            <FileText size={32} className="text-white" />
-          </div>
-          <h3 className="text-xl font-semibold mb-2">Complete Your Profile</h3>
-          <p>Complete your profile with all required documention</p>
-        </div>
-        <div className="flex flex-col items-center text-center text-white">
-          <div className="bg-black rounded-full p-4 mb-4">
-            <Shield size={32} className="text-white" />
-          </div>
-          <h3 className="text-xl font-semibold mb-2">Apply Job Or Hire</h3>
-          <p>Apply & get your preferable jobs with all the requirements and get it.</p>
         </div>
       </div>
     )
@@ -156,8 +76,15 @@ const HomeCarousel: React.FC = () => {
     };
 
     window.addEventListener('keydown', handleKeyDown);
+    
+    // Auto-advance slides every 5 seconds
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 5000);
+    
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
+      clearInterval(interval);
     };
   }, []);
 
@@ -172,6 +99,19 @@ const HomeCarousel: React.FC = () => {
       }
     });
 
+    // Add wheel event listener for mouse scroll
+    const carouselContainer = document.querySelector('.carousel-container');
+    if (carouselContainer) {
+      carouselContainer.addEventListener('wheel', (e: WheelEvent) => {
+        e.preventDefault();
+        if (e.deltaY > 0) {
+          nextSlide();
+        } else {
+          prevSlide();
+        }
+      });
+    }
+
     return () => {
       buttons.forEach(button => {
         if (button.classList.contains('carousel-button-next')) {
@@ -180,6 +120,10 @@ const HomeCarousel: React.FC = () => {
           button.removeEventListener('click', prevSlide);
         }
       });
+      
+      if (carouselContainer) {
+        carouselContainer.removeEventListener('wheel', nextSlide);
+      }
     };
   }, []);
 

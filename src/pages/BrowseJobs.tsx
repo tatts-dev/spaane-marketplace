@@ -21,26 +21,30 @@ const categories = [
     icon: <Zap size={32} />, 
     title: 'Electrician', 
     jobCount: 68,
-    link: '/browse/electrician'
+    link: '/browse/electrician',
+    image: '/lovable-uploads/efe8c963-eb85-4d60-9a86-039e6cca819d.png'
   },
   { 
     icon: <Wrench size={32} />, 
     title: 'Plumber', 
     jobCount: 120,
-    link: '/browse/plumber'
+    link: '/browse/plumber',
+    image: '/lovable-uploads/3b106bdb-7e02-457e-94c1-2a4bb70de4cc.png'
   },
   { 
     icon: <Hammer size={32} />, 
     title: 'Carpenter', 
     jobCount: 120,
-    link: '/browse/carpenter'
+    link: '/browse/carpenter',
+    image: '/lovable-uploads/d0165431-48b3-4f95-a5af-9ae80b6f3ca8.png'
   },
   { 
     icon: <Flame size={32} />, 
     title: 'Welding', 
     jobCount: 120,
     link: '/browse/welding',
-    isActive: true
+    isActive: true,
+    image: '/lovable-uploads/e1cdb9b7-e6b9-46aa-b915-595e48156252.png'
   },
   { 
     icon: <Scissors size={32} />, 
@@ -64,7 +68,8 @@ const categories = [
     icon: <Fan size={32} />, 
     title: 'HVAC', 
     jobCount: 38,
-    link: '/browse/hvac'
+    link: '/browse/hvac',
+    image: '/lovable-uploads/8cf6b128-8642-4f8a-9d41-8831be92719f.png'
   },
 ];
 
@@ -90,6 +95,7 @@ const BrowseJobs: React.FC = () => {
                 jobCount={category.jobCount}
                 link={category.link}
                 isActive={category.isActive}
+                image={category.image}
               />
             ))}
           </div>

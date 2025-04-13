@@ -3,7 +3,7 @@ import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import CategoryCard from '@/components/CategoryCard';
-import { Zap, Wrench, Hammer, Flame, Scissors, Paintbrush, WaterIcon, Fan } from 'lucide-react';
+import { Zap, Wrench, Hammer, Flame, Scissors, Paintbrush, Droplets, Fan } from 'lucide-react';
 
 const categories = [
   { 
@@ -44,7 +44,7 @@ const categories = [
     link: '/browse/painting'
   },
   { 
-    icon: <WaterIcon size={32} />, 
+    icon: <Droplets size={32} />, 
     title: 'Pool Cleaning', 
     jobCount: 45,
     link: '/browse/pool-cleaning'

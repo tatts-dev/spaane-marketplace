@@ -106,7 +106,6 @@
   border-radius: 50%;
   background-color: #ccc;
   cursor: pointer;
-  transition: all 0.3s ease;
 }
 
 .carousel-dot.active {
@@ -130,11 +129,6 @@
   justify-content: center;
   cursor: pointer;
   z-index: 10;
-  transition: all 0.3s ease;
-}
-
-.carousel-button:hover {
-  background-color: rgba(0, 0, 0, 0.8);
 }
 
 .carousel-button-prev {
@@ -143,25 +137,4 @@
 
 .carousel-button-next {
   right: 1rem;
-}
-
-/* Add smooth scroll animation */
-.carousel-container {
-  scroll-behavior: smooth;
-}
-
-.category-image-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-size: cover;
-  background-position: center;
-  opacity: 0.2;
-  transition: opacity 0.3s ease;
-}
-
-.category-card:hover .category-image-overlay {
-  opacity: 0.3;
 }

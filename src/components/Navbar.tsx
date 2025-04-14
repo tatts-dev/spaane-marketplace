@@ -10,7 +10,7 @@ const Navbar: React.FC = () => {
       <div className="container mx-auto flex justify-between items-center">
         <Link to="/" className="flex items-center">
           <Logo />
-          <span className="text-xl font-bold ml-2 text-spaane-black">Spaane Marketplace</span>
+          <span className="text-xl font-bold ml-2 text-spaane-black">SPAANE CONNECT</span>
         </Link>
         <div className="hidden md:flex items-center space-x-4">
           <Link to="/browse" className="text-gray-700 hover:text-spaane-green">Browse Jobs</Link>

@@ -14,7 +14,7 @@ const Footer: React.FC = () => {
               <span className="text-xl font-bold ml-2">Spaane</span>
             </div>
             <p className="text-gray-300 mb-4">
-              Connecting qualified professionals with clients in Pretoria.
+              Connecting qualified professionals with clients in need.
             </p>
           </div>
           

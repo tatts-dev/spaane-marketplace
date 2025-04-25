@@ -1,12 +1,43 @@
 
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import Logo from '@/components/Logo';
+import { useAuth } from '@/hooks/useAuth';
+import { useToast } from '@/components/ui/use-toast';
 
 const Login: React.FC = () => {
+  const { signIn } = useAuth();
+  const { toast } = useToast();
+  const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    try {
+      setLoading(true);
+      await signIn(email, password);
+      toast({
+        title: "Success",
+        description: "Logged in successfully!",
+      });
+      // No need to navigate - the PrivateRoute will handle redirection
+    } catch (error: any) {
+      toast({
+        title: "Error",
+        description: error.message || "Failed to log in. Please check your credentials.",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 p-4">
       <div className="w-full max-w-md bg-white rounded-lg shadow-lg overflow-hidden">
@@ -19,10 +50,17 @@ const Login: React.FC = () => {
         </div>
         
         <div className="p-6">
-          <form className="space-y-4">
+          <form className="space-y-4" onSubmit={handleSubmit}>
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
-              <Input id="email" type="email" placeholder="your.email@example.com" />
+              <Input 
+                id="email" 
+                type="email" 
+                placeholder="your.email@example.com" 
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
             </div>
             
             <div className="space-y-2">
@@ -32,12 +70,22 @@ const Login: React.FC = () => {
                   Forgot password?
                 </Link>
               </div>
-              <Input id="password" type="password" />
+              <Input 
+                id="password" 
+                type="password" 
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
             </div>
             
             <div className="pt-2">
-              <Button className="w-full bg-spaane-green hover:bg-spaane-dark">
-                Sign In
+              <Button 
+                className="w-full bg-spaane-green hover:bg-spaane-dark"
+                type="submit"
+                disabled={loading}
+              >
+                {loading ? 'Signing In...' : 'Sign In'}
               </Button>
             </div>
           </form>
@@ -62,10 +110,10 @@ const Login: React.FC = () => {
             </div>
             
             <div className="mt-4 grid grid-cols-2 gap-3">
-              <Button variant="outline" className="w-full">
+              <Button variant="outline" className="w-full" type="button" disabled>
                 Google
               </Button>
-              <Button variant="outline" className="w-full">
+              <Button variant="outline" className="w-full" type="button" disabled>
                 Facebook
               </Button>
             </div>

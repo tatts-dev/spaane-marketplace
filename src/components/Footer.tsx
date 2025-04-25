@@ -7,7 +7,7 @@ const Footer: React.FC = () => {
   return (
     <footer className="bg-spaane-dark text-white py-10">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="col-span-1">
             <div className="flex items-center mb-4">
               <Logo />
@@ -29,19 +29,11 @@ const Footer: React.FC = () => {
           </div>
           
           <div className="col-span-1">
-            <h3 className="text-lg font-semibold mb-4">For Professionals</h3>
+            <h3 className="text-lg font-semibold mb-4">Get Started</h3>
             <ul className="space-y-2">
               <li><Link to="/freelancer/signup" className="text-gray-300 hover:text-white">Sign Up as Freelancer</Link></li>
-              <li><Link to="/freelancer/dashboard" className="text-gray-300 hover:text-white">Freelancer Dashboard</Link></li>
-              <li><Link to="/pricing" className="text-gray-300 hover:text-white">Subscription Plans</Link></li>
-            </ul>
-          </div>
-          
-          <div className="col-span-1">
-            <h3 className="text-lg font-semibold mb-4">For Clients</h3>
-            <ul className="space-y-2">
               <li><Link to="/client/signup" className="text-gray-300 hover:text-white">Sign Up as Client</Link></li>
-              <li><Link to="/client/dashboard" className="text-gray-300 hover:text-white">Client Dashboard</Link></li>
+              <li><Link to="/pricing" className="text-gray-300 hover:text-white">Subscription Plans</Link></li>
               <li><Link to="/post-job" className="text-gray-300 hover:text-white">Post a Job</Link></li>
             </ul>
           </div>

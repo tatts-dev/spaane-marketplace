@@ -31,9 +31,7 @@ const Footer: React.FC = () => {
           <div className="col-span-1">
             <h3 className="text-lg font-semibold mb-4">Get Started</h3>
             <ul className="space-y-2">
-              <li><Link to="/freelancer/signup" className="text-gray-300 hover:text-white">Sign Up as Freelancer</Link></li>
-              <li><Link to="/client/signup" className="text-gray-300 hover:text-white">Sign Up as Client</Link></li>
-              <li><Link to="/pricing" className="text-gray-300 hover:text-white">Subscription Plans</Link></li>
+              <li><Link to="/signup" className="text-gray-300 hover:text-white">Sign Up</Link></li>
               <li><Link to="/post-job" className="text-gray-300 hover:text-white">Post a Job</Link></li>
             </ul>
           </div>

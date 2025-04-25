@@ -22,23 +22,25 @@ const PrivateRoute = ({ children, userType }: PrivateRouteProps) => {
         variant: "destructive",
       });
       navigate('/login');
+      return;
     }
 
-    if (user && userType) {
+    if (!loading && user && userType) {
       const userMetadata = user.user_metadata;
-      if (userMetadata.user_type !== userType) {
+      if (userMetadata?.user_type !== userType) {
         toast({
           title: "Access denied",
           description: `This page is only accessible to ${userType}s`,
           variant: "destructive",
         });
         navigate('/');
+        return;
       }
     }
-  }, [user, session, loading, navigate, userType]);
+  }, [user, session, loading, navigate, userType, toast]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="flex items-center justify-center h-screen">Loading...</div>;
   }
 
   return session ? <>{children}</> : null;

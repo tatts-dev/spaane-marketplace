@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -9,12 +9,26 @@ import { useAuth } from '@/hooks/useAuth';
 import { useToast } from '@/components/ui/use-toast';
 
 const Login: React.FC = () => {
-  const { signIn } = useAuth();
+  const { signIn, user, session, loading: authLoading } = useAuth();
   const { toast } = useToast();
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+
+  // Add an effect to handle redirection when authentication state changes
+  useEffect(() => {
+    if (user && session) {
+      const userType = user.user_metadata.user_type;
+      if (userType === 'client') {
+        navigate('/client/dashboard');
+      } else if (userType === 'freelancer') {
+        navigate('/freelancer/dashboard');
+      } else {
+        navigate('/');
+      }
+    }
+  }, [user, session, navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -26,7 +40,7 @@ const Login: React.FC = () => {
         title: "Success",
         description: "Logged in successfully!",
       });
-      // No need to navigate - the PrivateRoute will handle redirection
+      // Redirection will be handled by the useEffect hook
     } catch (error: any) {
       toast({
         title: "Error",
@@ -83,7 +97,7 @@ const Login: React.FC = () => {
               <Button 
                 className="w-full bg-spaane-green hover:bg-spaane-dark"
                 type="submit"
-                disabled={loading}
+                disabled={loading || authLoading}
               >
                 {loading ? 'Signing In...' : 'Sign In'}
               </Button>

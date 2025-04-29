@@ -1,5 +1,4 @@
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -15,7 +14,7 @@ enum UserType {
 }
 
 const Signup: React.FC = () => {
-  const { signUp } = useAuth();
+  const { signUp, user, session } = useAuth();
   const { toast } = useToast();
   const navigate = useNavigate();
   const [userType, setUserType] = useState<UserType>(UserType.CLIENT);
@@ -37,6 +36,20 @@ const Signup: React.FC = () => {
   const [freelancerProfession, setFreelancerProfession] = useState('');
   const [freelancerPassword, setFreelancerPassword] = useState('');
   const [freelancerConfirmPassword, setFreelancerConfirmPassword] = useState('');
+  
+  // Add effect to handle automatic redirection after signup
+  useEffect(() => {
+    if (user && session) {
+      const userType = user.user_metadata.user_type;
+      if (userType === 'client') {
+        navigate('/client/dashboard');
+      } else if (userType === 'freelancer') {
+        navigate('/freelancer/dashboard');
+      } else {
+        navigate('/');
+      }
+    }
+  }, [user, session, navigate]);
   
   const handleUserTypeChange = (value: string) => {
     setUserType(value as UserType);
@@ -65,10 +78,10 @@ const Signup: React.FC = () => {
       );
       toast({
         title: "Success",
-        description: "Account created successfully! You can now login.",
+        description: "Account created successfully!",
         variant: "default",
       });
-      navigate('/login');
+      // Redirection will be handled by the useEffect hook
     } catch (error: any) {
       toast({
         title: "Error",
@@ -103,10 +116,10 @@ const Signup: React.FC = () => {
       );
       toast({
         title: "Success",
-        description: "Account created successfully! You can now login.",
+        description: "Account created successfully!",
         variant: "default",
       });
-      navigate('/login');
+      // Redirection will be handled by the useEffect hook
     } catch (error: any) {
       toast({
         title: "Error",
